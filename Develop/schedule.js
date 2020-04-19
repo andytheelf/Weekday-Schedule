@@ -26,7 +26,7 @@ function addTask(btnId, taskId) {
    localStorage.setItem(btnId, taskId);
    }
 
-   // Background Color Set Function
+   // Background Color Function
 
 const rows = document.getElementsByClassName("row");
 let currentHour = parseInt(moment().format('H'));
@@ -34,10 +34,10 @@ let currentHour = parseInt(moment().format('H'));
 
 Array.from(rows).forEach(row => {
   let
-    rowIdString = row.id,
+    rowString = row.id,
     rowHour;
-  if (rowIdString) {
-    rowHour = parseInt(rowIdString);
+  if (rowString) {
+    rowHour = parseInt(rowString);
   }
   if (rowHour) {
     // current hour and set color 
