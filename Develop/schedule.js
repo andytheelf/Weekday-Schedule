@@ -8,10 +8,19 @@ for(i=0; i < localStorage.length;i++) {
   $("#task" + i).append(localStorage.getItem(localStorage.key(i)));
 }
 
-}); //DOC READY END
-
 let nowHour24 = moment().format('H');
-let nowHour12 = moment().format('h');
+console.log(nowHour24)
+
+
+// if(nowHour24 < 9 || nowHour24 > 17) {
+
+// for(i=0;i<9;i++) {
+// $("#task" + i).addClass("present");
+//   }
+// }
+
+
+}); //DOC READY END
 
 
 function addTask(btnId, taskId) {
@@ -19,22 +28,41 @@ function addTask(btnId, taskId) {
    localStorage.setItem(btnId, taskId);
    }
 
-   function updateRowColor($hourRow,hour) { 
-  
-      if (test) { console.log("rowColor ",nowHour24, hour); }
-  
-      if ( hour < nowHour24) {
-        // $hourRow.css('')
-        if (test) { console.log("lessThan"); }
-        $hourRow.css("background-color","lightgrey")
-      } else if ( hour > nowHour24) {
-        if (test) { console.log("greaterthan"); }
-        $hourRow.css("background-color","lightgreen")
-      } else {
-        if (test) { console.log("eqaul"); }
-        $hourRow.css("background-color","tomato")
-      }
-    };
+   // Background Color Set Function
+
+// define row is time in 24 hour time format
+const rows = document.getElementsByClassName("row");
+let currentHour = parseInt(moment().format('H'));
+
+// lets make sure we are getting expected output
+console.log(currentHour);
+
+// makes a row id to compare
+Array.from(rows).forEach(row => {
+  let
+    rowIdString = row.id,
+    rowHour;
+  if (rowIdString) {
+    rowHour = parseInt(rowIdString);
+  }
+  if (rowHour) {
+    // Compares row id to current hour and sets color accordingly
+    if (currentHour === rowHour) {
+      setColor(row, "red");
+    } else if ((currentHour > rowHour)){
+      setColor(row, "green");
+    } else if ((currentHour < rowHour)) {
+      setColor(row, "lightgrey");
+    }
+  }
+});
+
+// function to set the background color based of hour
+function setColor(element, color) {
+  element.style.backgroundColor = color;
+}
+
+   
    
 
 
